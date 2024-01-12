@@ -3,6 +3,8 @@ package com.dan.market_connect.models.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "customers")
@@ -18,6 +20,9 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> order;
 }
